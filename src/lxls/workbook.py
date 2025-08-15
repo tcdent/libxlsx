@@ -33,9 +33,9 @@ class Workbook:
             for name in zip_file.namelist():
                 self._zip_data[name] = zip_file.read(name)
         
-        # Parse workbook relationships and sheet info
-        self._parse_workbook_structure()
+        # Load shared strings first, then parse workbook structure
         self._load_shared_strings()
+        self._parse_workbook_structure()
     
     def _parse_workbook_structure(self) -> None:
         """Parse workbook.xml to get sheet information."""
@@ -65,7 +65,7 @@ class Workbook:
         
         root = etree.fromstring(rels_xml)
         
-        for rel in root.xpath(f'//r:Relationship[@Id="{rel_id}"]', namespaces=NAMESPACES):
+        for rel in root.xpath(f'//pkg:Relationship[@Id="{rel_id}"]', namespaces=NAMESPACES):
             target = rel.get('Target')
             if target:
                 return f'xl/{target}'

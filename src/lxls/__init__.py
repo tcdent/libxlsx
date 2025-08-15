@@ -1,17 +1,10 @@
 from __future__ import annotations
-from typing import TypeVar
 from pathlib import Path
 
 from .workbook import Workbook
 from .sheet import Sheet
 from .column import Column
-
-
-class formula(str):
-    pass
-
-
-NativeTypes = str | int | float | bool | formula
+from .types import formula, NativeTypes
 
 
 def load_workbook(filename: str | Path) -> Workbook:

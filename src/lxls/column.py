@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Iterator, TYPE_CHECKING
-from . import NativeTypes
+from .types import NativeTypes
 
 if TYPE_CHECKING:
     from .sheet import Sheet

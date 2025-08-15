@@ -10,7 +10,8 @@ CELL_PATTERN = re.compile(r'^([A-Z]+)(\d+)$')
 # XLSX XML namespaces
 NAMESPACES = {
     'w': 'http://schemas.openxmlformats.org/spreadsheetml/2006/main',
-    'r': 'http://schemas.openxmlformats.org/officeDocument/2006/relationships'
+    'r': 'http://schemas.openxmlformats.org/officeDocument/2006/relationships',
+    'pkg': 'http://schemas.openxmlformats.org/package/2006/relationships'
 }
 
 # Cell type constants
