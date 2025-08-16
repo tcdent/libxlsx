@@ -102,8 +102,15 @@ def column_range(start: str, end: str) -> Iterator[str]:
 def get_cell_value_from_element(cell_elem: etree._Element, shared_strings: list[str] | None = None) -> str | int | float | bool | None:
     """Extract cell value from XML element.
     
-    Handles different cell types: string, number, boolean, etc.
+    Handles different cell types: string, number, boolean, formulas, etc.
     """
+    from .types import formula
+    
+    # Check for formula first
+    formula_elem = cell_elem.find('w:f', NAMESPACES)
+    if formula_elem is not None and formula_elem.text:
+        return formula(formula_elem.text)
+    
     # Get cell type
     cell_type = cell_elem.get(CellAttr.TYPE, CellType.NUMBER)
     
@@ -143,19 +150,26 @@ def get_cell_value_from_element(cell_elem: etree._Element, shared_strings: list[
 
 def create_cell_element(value: str | int | float | bool, cell_ref: str) -> etree._Element:
     """Create XML element for a cell with the given value."""
+    from .types import formula
+    
     cell = etree.Element('{http://schemas.openxmlformats.org/spreadsheetml/2006/main}c')
     cell.set(CellAttr.REFERENCE, cell_ref)
     
-    # Create value element
-    v_elem = etree.SubElement(cell, '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}v')
-    
-    if isinstance(value, bool):
+    if isinstance(value, formula):
+        # Create formula element (no type attribute, no value element)
+        f_elem = etree.SubElement(cell, '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}f')
+        f_elem.text = str(value)
+    elif isinstance(value, bool):
+        # Create value element for boolean
+        v_elem = etree.SubElement(cell, '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}v')
         cell.set(CellAttr.TYPE, CellType.BOOLEAN)
         v_elem.text = '1' if value else '0'
     elif isinstance(value, (int, float)):
-        # No type attribute needed for numbers (default)
+        # Create value element for numbers (no type attribute needed)
+        v_elem = etree.SubElement(cell, '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}v')
         v_elem.text = str(value)
-    else:  # String - for now, store as inline string
+    else:  # String - store as inline string
+        v_elem = etree.SubElement(cell, '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}v')
         cell.set(CellAttr.TYPE, CellType.INLINE_STRING)
         v_elem.text = str(value)
     
