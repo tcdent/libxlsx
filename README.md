@@ -32,7 +32,7 @@ print(f"Current revenue: {revenue}")
 # Write values (only these cells are modified)
 sheet[A][1] = 125000.0        # Update revenue
 sheet[B][1] = "Updated"        # Add status
-sheet[C][1] = formula("=A1*1.1")  # Add 10% projection
+sheet[C][1] = formula("A1*1.1")  # Add 10% projection
 
 # Save with minimal changes
 workbook.save("report_updated.xlsx")
@@ -54,7 +54,7 @@ assumptions[B][6] = 0.25    # Tax rate
 assumptions[B][7] = 1000000 # Base revenue
 
 # Add validation formula
-assumptions[B][10] = formula("=IF(B5>0.5,\"Check growth rate\",\"OK\")")
+assumptions[B][10] = formula("IF(B5>0.5,\"Check growth rate\",\"OK\")")
 
 # All charts, pivot tables, and complex formulas remain intact
 model.save("financial_model_updated.xlsx")
@@ -77,7 +77,7 @@ sheet = workbook["Sheet1"]
 # column + row access
 sheet[A][1] = 123.45
 sheet[A][2] = "Hello world"
-sheet[B][1] = formula("=SUM(B2:B8)")
+sheet[B][1] = formula("SUM(B2:B8)")
 
 
 x: str = sheet[A][2]
@@ -102,7 +102,7 @@ for col in sheet[A:B]:
         print(cell)
 # -> 123.45
 # -> "Hello world"
-# -> =SUM(B2:B8)
+# -> SUM(B2:B8)
 
 
 workbook.save("Workbook (modified).xlsx")

@@ -136,7 +136,7 @@ class TestWriteFromEmpty:
         sheet[C][11] = 0
         
         # Add a formula
-        sheet[A][12] = formula("=SUM(B10:B11)")
+        sheet[A][12] = formula("SUM(B10:B11)")
         
         # Add some negative numbers
         sheet[B][12] = -100
@@ -159,7 +159,7 @@ class TestWriteFromEmpty:
         # Formula should be preserved as a formula object when reloaded
         formula_value = reloaded_sheet[A][12]
         assert isinstance(formula_value, formula)
-        assert str(formula_value) == "=SUM(B10:B11)"
+        assert str(formula_value) == "SUM(B10:B11)"
         assert reloaded_sheet[B][12] == -100
         assert reloaded_sheet[C][12] == -0.5
         

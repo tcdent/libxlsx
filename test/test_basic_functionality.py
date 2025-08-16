@@ -112,12 +112,12 @@ class TestCellWriting:
         sheet[A][21] = 20
         
         # Write a formula
-        sheet[B][22] = formula("=SUM(A20:A21)")
+        sheet[B][22] = formula("SUM(A20:A21)")
         
         # The formula should be stored as a formula object
         result = sheet[B][22]
         assert isinstance(result, formula)
-        assert str(result) == "=SUM(A20:A21)"
+        assert str(result) == "SUM(A20:A21)"
 
 
 class TestColumnOperations:

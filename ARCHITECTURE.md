@@ -63,7 +63,7 @@ sheet = workbook["Sheet1"]
 # Read/write individual cells
 value = sheet[A][1]              # Read cell A1
 sheet[A][1] = "Hello World"      # Write cell A1
-sheet[B][2] = formula("=A1*2")   # Write formula
+sheet[B][2] = formula("A1*2")   # Write formula
 
 # Iterate over columns and ranges
 for cell in sheet[A]:            # All values in column A
