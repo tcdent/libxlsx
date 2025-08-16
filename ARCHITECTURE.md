@@ -15,7 +15,7 @@ lxls is a surgical XLSX editor designed for lossless, minimal modifications to e
 Excel workbooks contain incredibly complex internal structures. Attempting to parse, understand, and reimplement all of Excel's features would be rebuilding Excel itself—an enormous, never-ending project. Instead, we:
 
 1. Load the entire XLSX file into memory
-2. Parse only what we need for targeted operations  
+2. Parse only what we need for targeted operations
 3. Make surgical modifications to the in-memory representation
 4. Save only the changed parts back to disk
 
@@ -24,7 +24,7 @@ This ensures the original workbook remains fully functional when reopened in Exc
 ## Technical Architecture
 
 ### Core Technologies
-- **Backend**: `zipfile` + `lxml.etree` 
+- **Backend**: `zipfile` + `lxml.etree`
   - `zipfile`: Handle XLSX as ZIP archive format
   - `lxml.etree`: Fast, precise XML parsing and modification
 - **Format**: XLSX only (Open XML)
@@ -54,7 +54,7 @@ This ensures the original workbook remains fully functional when reopened in Exc
 
 ```python
 from lxls import load_workbook, formula
-from lxls.const import A, B, C
+from lxls.const import *
 
 # Load existing workbook
 workbook = load_workbook("existing.xlsx")
@@ -112,7 +112,7 @@ workbook.save("modified.xlsx")
 
 ### Future Optimizations
 - **Shared strings table**: Handle string deduplication properly
-- **Selective re-parsing**: Only re-parse modified XML sections  
+- **Selective re-parsing**: Only re-parse modified XML sections
 - **Dirty state tracking**: Track which ZIP members need saving
 - **Performance profiling**: Optimize bottlenecks as they emerge
 
@@ -122,7 +122,7 @@ workbook.save("modified.xlsx")
 src/lxls/
 ├── __init__.py          # Public API exports
 ├── workbook.py          # Workbook class
-├── sheet.py             # Sheet class  
+├── sheet.py             # Sheet class
 ├── column.py            # Column class
 ├── const.py             # A-Z column constants
 └── ARCHITECTURE.md      # This file

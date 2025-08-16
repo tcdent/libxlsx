@@ -19,7 +19,7 @@ pip install lxls
 
 ```python
 from lxls import load_workbook, formula
-from lxls.const import A, B, C
+from lxls.const import *
 
 # Load existing workbook (preserves everything)
 workbook = load_workbook("report.xlsx")
