@@ -1,5 +1,5 @@
 [project]
-name = "lxls"
+name = "libxlsx"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -18,5 +18,5 @@ requires = ["uv_build>=0.8.10,<0.9.0"]
 build-backend = "uv_build"
 
 [tool.uv_build]
-module-name = "lxls"
+module-name = "libxlsx"
 module-root = "src"

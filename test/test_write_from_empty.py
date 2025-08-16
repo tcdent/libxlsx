@@ -3,8 +3,8 @@ Test writing to an empty workbook to create the same format as our test fixture.
 """
 import pytest
 from pathlib import Path
-from lxls import load_workbook, formula
-from lxls.const import A, B, C
+from libxlsx import load_workbook, formula
+from libxlsx.const import A, B, C
 
 
 # Get fixture paths

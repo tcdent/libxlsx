@@ -1,25 +1,25 @@
 
-# lxls - Surgical XLSX Editor
+# libxlsx - Surgical XLSX Editor
 
-**lxls** is a Python library for making surgical edits to existing Excel (.xlsx) files while preserving all original formatting, charts, pivot tables, macros, and advanced features.
+**libxlsx** is a Python library for making surgical edits to existing Excel (.xlsx) files while preserving all original formatting, charts, pivot tables, macros, and advanced features.
 
-## Why lxls?
+## Why libxlsx?
 
 Traditional Excel libraries try to parse and recreate entire workbooks, often losing complex formatting and advanced features in the process. This approach requires implementing Excel's vast feature set—essentially rebuilding Excel itself.
 
-**lxls takes a different approach**: it loads the entire XLSX file into memory and makes only targeted, surgical modifications to specific cells while leaving everything else byte-for-byte identical. This ensures complete fidelity with the original workbook.
+**libxlsx takes a different approach**: it loads the entire XLSX file into memory and makes only targeted, surgical modifications to specific cells while leaving everything else byte-for-byte identical. This ensures complete fidelity with the original workbook.
 
 ## Quick Start
 
 ```bash
-pip install lxls
+pip install libxlsx
 ```
 
 ### Basic Usage
 
 ```python
-from lxls import load_workbook, formula
-from lxls.const import *
+from libxlsx import load_workbook, formula
+from libxlsx.const import *
 
 # Load existing workbook (preserves everything)
 workbook = load_workbook("report.xlsx")
@@ -41,8 +41,8 @@ workbook.save("report_updated.xlsx")
 ### Real-World Example
 
 ```python
-from lxls import load_workbook, formula
-from lxls.const import *
+from libxlsx import load_workbook, formula
+from libxlsx.const import *
 
 # Update a financial model without breaking formulas/charts
 model = load_workbook("financial_model.xlsx")
@@ -66,8 +66,8 @@ The following code examples demonstrate the intended API design and functionalit
 
 ```python
 
-from lxls import load_workbook, formula
-from lxls.const import *
+from libxlsx import load_workbook, formula
+from libxlsx.const import *
 
 workbook = load_workbook("Workbook.xlsx")
 

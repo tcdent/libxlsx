@@ -1,10 +1,10 @@
 """
-Basic functionality tests for lxls using the Book1.xlsx fixture.
+Basic functionality tests for libxlsx using the Book1.xlsx fixture.
 """
 import pytest
 from pathlib import Path
-from lxls import load_workbook, formula
-from lxls.const import A, B, C, D
+from libxlsx import load_workbook, formula
+from libxlsx.const import A, B, C, D
 
 
 # Get fixture path

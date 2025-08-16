@@ -1,8 +1,8 @@
-# lxls Architecture
+# libxlsx Architecture
 
 ## Overview
 
-lxls is a surgical XLSX editor designed for lossless, minimal modifications to existing Excel workbooks. Rather than attempting to recreate Excel's full feature set, we surgically edit only what we must while preserving all other file contents byte-for-byte.
+libxlsx is a surgical XLSX editor designed for lossless, minimal modifications to existing Excel workbooks. Rather than attempting to recreate Excel's full feature set, we surgically edit only what we must while preserving all other file contents byte-for-byte.
 
 ## Design Philosophy
 
@@ -53,8 +53,8 @@ This ensures the original workbook remains fully functional when reopened in Exc
 ### API Design
 
 ```python
-from lxls import load_workbook, formula
-from lxls.const import *
+from libxlsx import load_workbook, formula
+from libxlsx.const import *
 
 # Load existing workbook
 workbook = load_workbook("existing.xlsx")
@@ -119,7 +119,7 @@ workbook.save("modified.xlsx")
 ## File Structure
 
 ```
-src/lxls/
+src/libxlsx/
 ├── __init__.py          # Public API exports
 ├── workbook.py          # Workbook class
 ├── sheet.py             # Sheet class
